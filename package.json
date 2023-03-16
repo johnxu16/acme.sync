@@ -1,0 +1,16 @@
+{
+  "name": "acme-sync",
+  "version": "1.0.0",
+  "description": "",
+  "module": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bree": "^9.1.3",
+    "zx": "^7.2.0"
+  }
+}
