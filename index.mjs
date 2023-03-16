@@ -1,24 +1,22 @@
 #!/usr/bin/env zx
-import fs from 'fs/promises';
+import Cabin from 'cabin';
+import Graceful from '@ladjs/graceful';
+import Bree from 'bree';
 
-const rawJSON = (await fs.readFile("./data/acme.json")).toString();
-const JsObj = JSON.parse(rawJSON);
-const { Certificates, Account: { PrivateKey } } = JsObj.lx;
+const bree = new Bree({
+  logger: new Cabin(),
+  jobs: [
+    {
+      name: 'gen-certs.mjs',
+      // interval: '1m',
+      interval: '1h'
+    }
+  ]
+})
 
-const letsencryptkey = `-----BEGIN RSA PRIVATE KEY-----\n${PrivateKey}\n-----END RSA PRIVATE KEY-----`
-// await $`${letsencryptkey} | openssl rsa -inform pem -out ${__dirname}/data/letsencryptkey`
-await $`echo ${letsencryptkey} | openssl rsa -inform pem -out ${__dirname}/data/letsencryptkey`
+const graceful = new Graceful({ brees: [bree] });
+graceful.listen();
 
-// await $`cat package.json | grep name`
-
-// let branch = await $`git branch --show-current`
-// await $`dep deploy --branch=${branch}`
-
-// await Promise.all([
-//   $`sleep 1; echo 1`,
-//   $`sleep 2; echo 2`,
-//   $`sleep 3; echo 3`,
-// ])
-
-// let name = 'foo bar'
-// await $`mkdir /tmp/${name}`
+(async () => {
+  await bree.start();
+})();

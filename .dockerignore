@@ -1,0 +1,5 @@
+*.sh
+README.md
+pnpm-lock.yaml
+data
+node_modules

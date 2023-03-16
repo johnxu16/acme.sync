@@ -1,16 +1,20 @@
 FROM node:16
 
-WORKDIR /
-
 LABEL maintainer="John Xu <bringerxu@tom.com>"
 
-RUN npm i -g zx
+RUN mkdir code
+
+WORKDIR /code
+
+COPY .npmrc ./.npmrc
+COPY package.json ./package.json
+
+RUN pnpm install
 
 COPY index.mjs /index.mjs
 
 VOLUME [ "/data" ]
 
-ENTRYPOINT [ "zx", "index.mjs" ]
+ENTRYPOINT [ "npm", "run", "start" ]
 
 CMD = [""]
-
