@@ -6,9 +6,8 @@ const JsObj = JSON.parse(rawJSON);
 const { Certificates, Account: { PrivateKey } } = JsObj.lx;
 
 const letsencryptkey = `-----BEGIN RSA PRIVATE KEY-----\n${PrivateKey}\n-----END RSA PRIVATE KEY-----`
-await $`${letsencryptkey} | openssl rsa -inform pem -out ${dir}/letsencryptkey`
-
-console.log(Certificates, PrivateKey);
+// await $`${letsencryptkey} | openssl rsa -inform pem -out ${__dirname}/data/letsencryptkey`
+await $`echo ${letsencryptkey} | openssl rsa -inform pem -out /data/letsencryptkey`
 
 // await $`cat package.json | grep name`
 
