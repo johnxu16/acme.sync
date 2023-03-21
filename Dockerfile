@@ -6,8 +6,7 @@ RUN mkdir code
 
 WORKDIR /code
 
-COPY .npmrc ./.npmrc
-COPY package.json ./package.json
+COPY .npmrc package.json ./
 
 RUN pnpm install
 

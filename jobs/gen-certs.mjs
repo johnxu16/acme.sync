@@ -1,7 +1,8 @@
+#!/usr/bin/env node
+import { $ } from 'zx';
 import fs from 'fs-extra';
 import path from 'path';
 import md5 from 'md5';
-import zx from 'zx';
 
 const FILE_DIGEST = "";
 
@@ -18,7 +19,6 @@ function normalizePath(path) {
 
 function isSame() {
   const digest = md5(rawJSON);
-  console.log(digest, FILE_DIGEST);
   return digest === FILE_DIGEST;
 }
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env zx
 import Cabin from 'cabin';
 import Graceful from '@ladjs/graceful';
 import Bree from 'bree';
@@ -9,7 +8,7 @@ const bree = new Bree({
     {
       name: 'gen-certs.mjs',
       // interval: '1m',
-      interval: '1h'
+      interval: '5s'
     }
   ]
 })
