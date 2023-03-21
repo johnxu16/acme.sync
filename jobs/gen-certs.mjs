@@ -1,14 +1,17 @@
-#!/usr/bin/env node
 import { $ } from 'zx';
 import fs from 'fs-extra';
 import path from 'path';
 import md5 from 'md5';
+import dbus from '../utils/dbus.mjs';
 
-const FILE_DIGEST = "";
+const isProduction = process.env.MODE === "production";
 
-const rawJSON = (await fs.readFile("./data/acme.json")).toString();
+const ACME_PATH = isProduction ? "/data/acme.json" : "./data/acme.json";
+const ACME_RESOLVER = process.env.ACME_RESOLVER;
+
+const rawJSON = (await fs.readFile(ACME_PATH)).toString();
 const JsObj = JSON.parse(rawJSON);
-const { Certificates, Account: { PrivateKey } } = JsObj.lx;
+const { Certificates, Account: { PrivateKey } } = JsObj[ACME_RESOLVER];
 
 const pdir = path.resolve("/data", "private");
 const cdir = path.resolve("/data", "certs");
@@ -18,8 +21,13 @@ function normalizePath(path) {
 }
 
 function isSame() {
+  console.log(global.FILE_DIGEST);
   const digest = md5(rawJSON);
-  return digest === FILE_DIGEST;
+  if(!global.FILE_DIGEST) {
+    global.FILE_DIGEST = digest;
+    return false;
+  }
+  return digest === global.FILE_DIGEST;
 }
 
 async function generateLetsEncryptKey() {
@@ -46,12 +54,9 @@ async function generateDomainsCerts() {
   })
 }
 
-async function run() {
+export async function run() {
   if (isSame()) return;
   await generateLetsEncryptKey();
   await generateDomainsCerts();
+  dbus.emit("update");
 }
-
-(async () => {
-  await run();
-})();

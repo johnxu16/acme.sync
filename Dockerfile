@@ -10,10 +10,8 @@ COPY .npmrc package.json ./
 
 RUN pnpm install
 
-COPY index.mjs /index.mjs
+COPY index.mjs jobs ./
 
 VOLUME [ "/data" ]
 
-ENTRYPOINT [ "npm", "run", "start" ]
-
-CMD = [""]
+CMD = ["node", "index.mjs"]

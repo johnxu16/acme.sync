@@ -1,21 +1,9 @@
-import Cabin from 'cabin';
-import Graceful from '@ladjs/graceful';
-import Bree from 'bree';
+#!/usr/bin/env node
+import cron from 'node-cron';
+import { run } from './jobs/gen-certs.mjs';
 
-const bree = new Bree({
-  logger: new Cabin(),
-  jobs: [
-    {
-      name: 'gen-certs.mjs',
-      // interval: '1m',
-      interval: '5s'
-    }
-  ]
+const CRON = process.env.CRON || (process.env.MODE === "production" ? "*/5 * * * * *" : "* * */1 * * *");
+
+cron.schedule(CRON, async () => {
+  await run()
 })
-
-const graceful = new Graceful({ brees: [bree] });
-graceful.listen();
-
-(async () => {
-  await bree.start();
-})();
