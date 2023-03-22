@@ -1,6 +1,6 @@
 ### ACME SYNC
 
-TLDR
+TL;DR
 
 I've been used Traefik for a while as a ingress controller. It works like a charm.
 

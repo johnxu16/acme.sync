@@ -10,7 +10,7 @@ COPY .npmrc package.json ./
 
 RUN pnpm install
 
-COPY index.mjs jobs ./
+COPY src ./
 
 VOLUME [ "/data" ]
 

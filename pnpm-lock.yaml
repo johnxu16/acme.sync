@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   cross-env: ^7.0.3
+  dotenv: ^16.0.3
   fs-extra: ^11.1.0
   md5: ^2.3.0
   node-cron: ^3.0.2
@@ -10,6 +11,7 @@ specifiers:
 
 dependencies:
   cross-env: 7.0.3
+  dotenv: 16.0.3
   fs-extra: 11.1.0
   md5: 2.3.0
   node-cron: 3.0.2
@@ -152,6 +154,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       path-type: 4.0.0
+    dev: false
+
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /duplexer/0.1.2:

@@ -4,13 +4,14 @@
   "description": "",
   "module": "index.mjs",
   "scripts": {
-    "test": "cross-env ACME_RESOLVER=lx MODE=development node index.mjs"
+    "test": "cross-env ACME_RESOLVER=lx NODE_ENV=development node src/index.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "fs-extra": "^11.1.0",
     "md5": "^2.3.0",
     "node-cron": "^3.0.2",
