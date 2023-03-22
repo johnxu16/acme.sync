@@ -28,5 +28,20 @@ Choose to extract the let's encrypt ssl certificate files in the Traefik and upl
 
 ###### docker
 ```bash
-docker run -d --name acme-sync -v $PWD/data:/data -e TENCENTCLOUD_SECRET_ID=tecent_secret_id -e TENCENTCLOUD_SECRET_KEY=secret_key -e ACME_RESOLVER=resolver acme
+docker run -d --name acme -v $PWD/data:/data -e TENCENTCLOUD_SECRET_ID=tecent_secret_id -e TENCENTCLOUD_SECRET_KEY=secret_key -e ACME_RESOLVER=resolver jx77/acme
+```
+
+###### docker-compose
+```yaml
+version: '3.4'
+
+services:
+  acme:
+    image: jx77/acme
+    volumes:
+      - {{ PATH }}:/data
+    environment:
+      - TENCENTCLOUD_SECRET_ID={{ tecent_secret_id }}
+      - TENCENTCLOUD_SECRET_KEY={{ secret_key }}
+      - ACME_RESOLVER={{ resolver }}
 ```
