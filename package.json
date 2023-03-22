@@ -1,7 +1,7 @@
 {
   "name": "acme-sync",
   "version": "1.0.0",
-  "description": "",
+  "description": "Extract ssl certificates files from traefik file and sync them into different cloud platform",
   "module": "index.mjs",
   "scripts": {
     "test": "cross-env ACME_RESOLVER=lx NODE_ENV=development node src/index.mjs"

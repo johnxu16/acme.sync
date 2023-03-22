@@ -5,12 +5,12 @@ import md5 from 'md5';
 import dbus from '../utils/dbus.mjs';
 import '../providers/tencent.mjs';
 
-const isProduction = process.env.NODE_ENV === "production";
+const isDEV = process.env.NODE_ENV === "development";
 const ACME_RESOLVER = process.env.ACME_RESOLVER;
 
-const ACME_PATH = isProduction ? "/data/acme.json" : "./data/acme.json";
-const pdir = isProduction ? "/data/private" : "./data/private";
-const cdir = isProduction ? "/data/certs" : "./data/certs";
+const ACME_PATH = isDEV ? "./data/acme.json" : "/data/acme.json" ;
+const pdir = isDEV ? "./data/private" : "/data/private";
+const cdir = isDEV ? "./data/certs" : "/data/certs";
 
 const rawJSON = (await fs.readFile(ACME_PATH)).toString();
 const JsObj = JSON.parse(rawJSON);

@@ -8,10 +8,10 @@ WORKDIR /code
 
 COPY .npmrc package.json ./
 
-RUN pnpm install
+RUN npm install
 
-COPY src ./
+COPY src ./src
 
 VOLUME [ "/data" ]
 
-CMD = ["node", "index.mjs"]
+CMD ["node", "src/index.mjs"]
