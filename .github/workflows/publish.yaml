@@ -30,7 +30,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            jx77/acme
+            johnxu16/acme.sync
           tags: |
             type=ref,event=branch
             type=ref,event=pr
