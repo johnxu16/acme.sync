@@ -37,7 +37,7 @@ version: '3.4'
 
 services:
   acme:
-    image: jx77/acme
+    image: johnxu16/acme.sync
     volumes:
       - {{ PATH }}:/data
     environment:
